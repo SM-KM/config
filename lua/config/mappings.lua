@@ -45,6 +45,12 @@ end)
 -- Testing
 vim.keymap.set("n", "<leader>tf", ":PlenaryBustedFile %<CR>")
 
+-- custom
+map("n", "<leader>ob", function()
+  local file = vim.fn.expand("%:p")
+  vim.fn.jobstart({ "xdg-open", file })
+end, { desc = "Open current file in Browser" })
+
 -- Tabs
 map("n", "cn", ":cnext<CR>")
 map("n", "cp", ":cprev<CR>")

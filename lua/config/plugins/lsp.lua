@@ -27,14 +27,10 @@ return {
         rust_analyzer = {
           cmd = {
             "rustup", "run", "stable", "rust-analyzer"
-          }
+          },
         },
         clangd = {
-          filetypes    = { "c", "cpp" },
-          cmd          = { "clangd", "--log=verbose" },
-          init_options = {
-            fallback_flags = { '-std=c++20' }
-          }
+          filetypes = { "c", "cpp" },
         },
         gopls = {
           { "gopls" },
@@ -49,8 +45,12 @@ return {
           filetypes = { "sql", "mysql" }
         },
         cssls = {},
-        jdtls = {
-        },
+        -- jdtls = {
+        -- },
+        kotlin_language_server = {
+          root_markers = { "settings.gradle", "settings.gradle.kts", "build.xml", "pom.xml", "build.gradle", "build.gradle.kts" },
+          filetypes = { "kotlin" }
+        }
       }
     },
 
@@ -100,6 +100,7 @@ return {
       vim.keymap.set("n", "gdc", ":lua vim.lsp.buf.declaration()<CR>")
       vim.keymap.set("n", "gdi", ":lua vim.lsp.buf.implementation()<CR>")
       vim.keymap.set("n", "sh", ":lua vim.lsp.buf.signature_help()<CR>")
+      vim.keymap.set("n", "gdl", ":lua vim.diagnostic.open_float()<CR>")
     end,
   }
 }

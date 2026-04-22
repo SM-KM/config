@@ -1,6 +1,6 @@
 return {
   {
-    dir = "~/personal/plugins/vdss.nvim",
-    opts = {}
+    -- dir = "~/personal/plugins/vdss.nvim",
+    -- opts = {}
   }
 }

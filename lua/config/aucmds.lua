@@ -14,17 +14,12 @@ local function is_current_buffer_empty()
 end
 
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufWinEnter' }, {
-  pattern = '*.h',
+  pattern = { '*.h', '*.hpp' },
   callback = function()
     local filename = vim.fn.expand("%:t:r")
     local guard_name = string.upper(filename) .. "_H"
     local header_content = {
-      "#ifndef " .. guard_name,
-      "#define " .. guard_name,
-      "",
-      "",
-      "#endif // " .. guard_name,
-    }
+      "#pragma once" }
 
     if is_current_buffer_empty() then
       vim.api.nvim_buf_set_lines(0, 0, -1, false, header_content)
@@ -46,4 +41,16 @@ vim.api.nvim_create_autocmd('TermOpen', {
     vim.opt.number = false
     vim.opt.relativenumber = false
   end,
+})
+
+vim.api.nvim_create_augroup("FileTypeColoschemes", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = "FileTypeColoschemes",
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype == "go" then
+      vim.cmd("colorscheme koda")
+    end
+  end
+
 })

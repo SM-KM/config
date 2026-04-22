@@ -11,3 +11,5 @@ vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "100"
 vim.opt.signcolumn = "yes:1"
+vim.opt.list = true
+vim.opt.listchars = { eol = "↴" }
